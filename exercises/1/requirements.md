@@ -6,4 +6,4 @@ FUN-DISPLAY-VERDICT - After user enters the weight of the cat, the system shall 
 
 FUN-INVALID-NAME - If provided name does not consist of lower-case or upper-case alphabets of length less or equal to 10, the system shall ask the user to try again with a shorter name and shut down.
 
-FUN-INVALID-WEIGHT - If provided weight is not an integer, the system shall ask the user to try again with a valid weight and shut down.
+FUN-INVALID-WEIGHT - If provided weight is not an integer, the system may crash with an exception.
