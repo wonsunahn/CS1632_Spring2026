@@ -18,7 +18,7 @@ Spring Semester 2026 - Supplementary Exercise 1
 
 * DUE: February 10 (Tuesday), 2026 before start of class
 
-**GitHub Classroom Link:** TBD
+**GitHub Classroom Link:** https://classroom.github.com/a/t7qUy17V
 
 ## Description
 
