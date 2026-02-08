@@ -11,7 +11,7 @@
 # CS 1632 - Software Testing
 Spring Semester 2026
 
-* DUE: February 10 (Tuesday), 2026 before start of class
+* DUE: ~~February 10 (Tuesday)~~ February 17 (Tuesday), 2026 before start of class
 
 **GitHub Classroom Link:** https://classroom.github.com/a/sTzO1N6g
 
