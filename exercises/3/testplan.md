@@ -66,7 +66,7 @@ POSTCONDITIONS:
 
 ```
 IDENTIFIER: TEST-6-SEARCH-CSC
-TEST CASE: Check that the third item when searching "csc" is the CSC Officers page.
+TEST CASE: Check that when "computer science club" is searched, one of the results is "Student Organization Spotlight: Computer Science Club (CSC)".
 PRECONDITIONS: None.
 EXECUTION STEPS:
 1. Open the URL https://www.pitt.edu/ on the web browser.
@@ -79,4 +79,20 @@ POSTCONDITIONS:
   (Hint:
    1. Use the "expect" assertion with the "getByRole" locator API to find a link with the given text.
    2. Then use the "toBeVisible" locator assertion API to verify that the given text is visible to the user.)
+```
+
+```
+IDENTIFIER: TEST-7-ABOUT-SNAPSHOT
+TEST CASE: Check that the third item when searching "csc" is the CSC Officers page.
+PRECONDITIONS: None.
+EXECUTION STEPS:
+1. Open the URL https://www.pitt.edu/ on the web browser.
+2. Click on the "About" menu.
+POSTCONDITIONS: 
+* The snapshot of the currently showing page is the same as the snapshot saved under
+  the tests/pittedu.spec.ts-snapshots/ folder for the given web browser and OS.
+  (Hint:
+   1. Use the "expect" assertion with the "toHaveScreenshot()" call.
+   2. If the toHaveScreenshot() is called without an image filename argument, it will automatically match the
+      file stored under tests/pittedu.spec.ts-snapshots/ folder for the given web browser and OS.)
 ```

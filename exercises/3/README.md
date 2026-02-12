@@ -30,12 +30,15 @@ https://www.pitt.edu/
 1. Please install the [Playwright Test for VSCode extension](https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright).
 
 1. Please install Playwright after opening the folder in VSCode.  You dan either in VSCode go to View > Command Palette > Test: Install Playwright, or you can execute the following commandline on your shell:
+   ```
+   npm install -D @playwright/test
+   ```
+
+   Then install the chromium, firefox, and webkit browsers as our test targets:
 
    ```
-   npm init playwright@latest --yes "--" . '--quiet' '--browser=chromium' '--browser=firefox' '--browser=webkit' '--gha'
+   npx -y playwright install --with-deps chromium firefox webkit
    ```
-
-   It will ask to overwrite some files.  Please say yes to all.
 
 ## Task 1: Get acquainted with Playwright
 
@@ -68,7 +71,7 @@ interactions like clicking and typing.
 
 ## Task 2: Write test cases
 
-Implement the 6 test cases listed in the [testplan.md](testplan.md) document
+Implement the 7 test cases listed in the [testplan.md](testplan.md) document
 using Playwright, for the requirements listed in
 [requirements.md](requirements.md).  Remember, each test must end with an
 assertion to check the postconditions!
@@ -114,13 +117,13 @@ using the following:
 npx playwright test --project=chromium
 ```
 
-If all goes well, then it will show all 6 tests passing:
+If all goes well, then it will show all 7 tests passing:
 
 ```
 > npx playwright test --project=chromium
 
-Running 6 tests using 6 workers
-  6 passed (5.2s)
+Running 7 tests using 7 workers
+  7 passed (5.2s)
 
 To open last HTML report run:
 
@@ -136,7 +139,7 @@ browser for brevity, but if you wanted to be rigorous, you can omit the
 npx playwright test
 ```
 
-Which will run the 6 test cases in each of the 3 browsers configured: chromium,
+Which will run the 7 test cases in each of the 3 browsers configured: chromium,
 firefox, and webkit.  
 
 ```
@@ -174,7 +177,7 @@ not give credit even if you get a full score on the autograder.
 
 # GradeScope Feedback
 
-The GradeScope autograder simply runs your 6 tests against www.pitt.edu and
+The GradeScope autograder simply runs your 7 tests against www.pitt.edu and
 deducts 5 points per test failure.  
 
 # Resources
