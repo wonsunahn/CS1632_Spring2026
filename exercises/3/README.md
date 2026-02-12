@@ -69,6 +69,9 @@ interactions like clicking and typing.
 * [Locator Assertions](https://playwright.dev/docs/api/class-locatorassertions) -
   A deeper dive into assertions you can do on locators.
 
+* [Snapshot Assertions](https://playwright.dev/docs/test-snapshots) - How to
+  generate and compare snapshot images
+
 ## Task 2: Write test cases
 
 Implement the 7 test cases listed in the [testplan.md](testplan.md) document
