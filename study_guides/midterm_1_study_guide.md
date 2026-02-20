@@ -60,7 +60,7 @@ need to apply a testing tool to a specific problem.**
 * Be able to explain the difference between explicit and implicit requirements.
 * Be able to explain why implicit requirements make it sometimes hard to tell whether something is a defect or an enhancement.
 * Be able to explain why bad coding style is not a defect.
-* Be able to explain what triage and sub-triage are.
+* Be able to explain what triage is and what is involved.
 * Be able to define all terminology introduced or fill in the blank.
 
 ## UNIT TESTING
