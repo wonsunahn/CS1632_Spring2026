@@ -102,7 +102,7 @@ not be able to detect bugs in the cs1632-buggier website (mentioned in the
 
 ### Race conditions hit again
 
-For the TEST-9-FEED test case, you will notice a 7 second delay between when
+For the TEST-8-FEED test case, you will notice a 7 second delay between when
 you hit the "Feed" button and when the cats go "Nom, nom, nom.".  That is
 because cats have self-respect and they will not jostle each other to get to
 the food first.  This delay may cause you to check the "feedResult" element
