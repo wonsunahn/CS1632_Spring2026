@@ -238,7 +238,7 @@ don't get deductions.
 It is encouraged that you submit to GradeScope early and often.  Please use the
 feedback you get on each submission to improve your code!
 
-The GradeScope autograder works in 3 phases:
+The GradeScope autograder works in 4 phases:
 
 1. GameOfLife method performance tests (45.0):
 
@@ -261,9 +261,10 @@ implementation.  If any of the pinning tests fail, you get a -5 deduction.
 
 1. GameOfLifePinningTest Mocking and Behavior Verification (0.0):
 
-   This section gives you feedback on whether you did proper mocking and
-behavior verification.  It does three test runs using your
-GameOfLifePinningTest:
+   **Note that this part only works if you got a full score on the previous
+"GameOfLifePinningTest method tests" section.** This section gives you feedback
+on whether you did proper mocking and behavior verification.  It does three
+test runs using your GameOfLifePinningTest:
 
    1) Output after injecting bug into real object: Since a real object used in
 your test becomes buggy, the test case that uses that real object should fail.
