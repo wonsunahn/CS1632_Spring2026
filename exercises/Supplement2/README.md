@@ -21,7 +21,7 @@
 # CS 1632 - Software Quality Assurance
 Spring Semester 2026 - Supplementary Exercise 2
 
-* DUE: March 10 (Tuesday), 2026 before start of class
+* DUE: March 17 (Tuesday), 2026 before start of class
 
 **GitHub Classroom Link:** https://classroom.github.com/a/xs54YYez
 
