@@ -8,6 +8,6 @@ public class JUnitTest {
     @Test
     public void testGetRoundString() {
         DrunkCarnivalShooter shooter = DrunkCarnivalShooter.createInstance(InstanceType.IMPL);
-        assertEquals("Round 1: || || || || ", shooter.getRoundString());
+        assertEquals("Round #0:  ||    ||    ||    ||  ", shooter.getRoundString());
     }
 }
