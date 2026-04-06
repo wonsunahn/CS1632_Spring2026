@@ -120,10 +120,17 @@ AFIST = [_A Friendly Introduction to Software Testing_](software-quality-assuran
 
 ## WEEK 14 (Week of 13 APR)
 
-* April 14, 11:00 AM @ 6110 Sennot Square: [BNY](https://www.bny.com/) lecture
-  * Speaker: Vittal Kommireddy, Director Of Quality Engineering Practice [LinkedIn](https://www.linkedin.com/in/vittal-kommireddy-a1857621/)
+* April 14, 11:00 AM @ 6110 Sennot Square: [Bank of New York (BNY)](https://www.bny.com/) lecture
+  * Speaker: Vittal Kommireddy, Director Of Quality Engineering Practice, [LinkedIn](https://www.linkedin.com/in/vittal-kommireddy-a1857621/)
+  
+* April 14, 4:00 PM @ 208 Cathedral of Learning: [Howmet Aerospace](https://www.howmet.com/) lecture
+  * Speaker: Ashley Petrouski, IT Business Architect - Artificial Intelligence, [LinkedIn](https://www.linkedin.com/in/apetrouski23/)
+  * Speaker: Nancy O'Brokta
 
-* April 16, 4:00 PM @ 208 Cathedral of Learning: [CGI](https://www.cgi.com/) lecture
+* April 16, 11:00 AM @ 6110 Sennot Square: [Naval Nuclear Lab](https://navalnuclearlab.energy.gov/nuclear-propulsion-program/) lecture
+  * Speaker: Speaker: Bryan Herman, Enterprise AI Technical Advisor, [LinkedIn](https://www.linkedin.com/in/bryanherman/)
+
+* April 16, 4:00 PM @ 208 Cathedral of Learning: [CGI Consulting](https://www.cgi.com/) lecture
   * Speaker: Laks Ranganathan, CGI Partner | Director - Consulting Services, [LinkedIn](https://www.linkedin.com/in/lakshmi-narasimhan-yeri-ranganathan-4b7b874b/)
 
 * Industry Guest Lectures: TBD
