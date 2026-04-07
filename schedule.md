@@ -105,18 +105,14 @@ AFIST = [_A Friendly Introduction to Software Testing_](software-quality-assuran
 
 * Class 1: In-class Exercise 5: Static Analysis Part 2
   * Prerequisite: Static Analysis Part 2 Lecture
-  * Prerequisite: Static Analysis Part 3 Lecture
 
 * Class 2: Discuss Exercise 5 Part 2 
 
 ## WEEK 13 (Week of 6 APR)
 
 * Class 1: In-class Supplementary Exercise 4: CI Pipelines
-  * Prerequisite: Pairwise and Combinatorial Testing Lecture (READING: AFIST, Chapter 17)
-  * Prerequisite: Smoke and Exploratory Testing Lecture (READING: AFIST, Chapters 10-11)
 
 * Class 2: In-class Supplementary Exercise 4: Dockers
-  * Prerequisite: Security Testing Lecture (READING: AFIST, Chapter 20)
 
 ## WEEK 14 (Week of 13 APR)
 
@@ -135,9 +131,20 @@ AFIST = [_A Friendly Introduction to Software Testing_](software-quality-assuran
 
 ## WEEK 15 (Week of 20 APR)
 
-* Class 1: Midterm 2 review
+* Class 1
+  * Pairwise and Combinatorial Testing Lecture (READING: AFIST, Chapter 17)
+  * Static Analysis Part 3 Lecture
 
-* Class 2: Midterm 2 on GradeScope
+* Class 2
+  * Security Testing Lecture (READING: AFIST, Chapter 20)
+  * Midterm 1 Review
+
+## WEEK 16 (Week of 27 APR)
+
+* Midterm 2 on GradeScope
+  * Dates:
+    * 1100 Section: 4/27 (Monday) 12:00PM - 1:50 PM
+    * 1130 Section: 5/1 (Friday) 4:00 PM - 5:50 PM
   * Steps:
     1. Do TopHat attendance at start of class.  If no attendance, grade will not be counted.
     2. Click on assignment "Midterm 2" on GradeScope (will appear at start of class).
@@ -146,9 +153,5 @@ AFIST = [_A Friendly Introduction to Software Testing_](software-quality-assuran
   * Exam is open book (Lecture slides, notes, textbook, exercises and deliverables).  All materials have to be on paper.
   * No internet access.  No generative AI.
   * You should have only the GradeScope on the screen at all times.
-  
-## WEEK 16 (Week of 27 APR)
-
-* Final exam week: NO FINAL
-
+  * 
 * Deliverable 5 due Friday 11:59 PM
