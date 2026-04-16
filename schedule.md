@@ -134,7 +134,7 @@ AFIST = [_A Friendly Introduction to Software Testing_](software-quality-assuran
 * April 16, 4:00 PM @ 208 Cathedral of Learning: [CGI Consulting](https://www.cgi.com/) lecture
   * Topic: Quality Engineering in MLOps (DevOps for Machine Learning)
   * Speaker: Laks Ranganathan, CGI Partner | Director - Consulting Services, [LinkedIn](https://www.linkedin.com/in/lakshmi-narasimhan-yeri-ranganathan-4b7b874b/)
-  * Speaker: Praveen Sone, Director Consulting Expert at CGI, [LinkedIn](https://www.linkedin.com/in/praveen-s-397bb811b/)
+  * Speaker: Praveen Sone, Lead AI/ML Engineer | Solution Architect, [LinkedIn](https://www.linkedin.com/in/praveen-s-397bb811b/)
   * Speaker: Venkata Siva Suman Kondapalli, Senior Consultant at CGI, [LinkedIn](https://www.linkedin.com/in/venkata-siva-suman-k-5a745136/)
 
 
