@@ -16,7 +16,8 @@
     + [Prerequisites](#prerequisites)
     + [Do some sanity tests](#do-some-sanity-tests)
     + [Create Docker image](#create-docker-image)
-    + [Import Selenium JUnit Tests](#import-selenium-junit-tests)
+    + [Create Docker Container](#create-docker-container)
+    + [Import Playwright Tests](#import-playwright-tests)
     + [Add CI Test Workflow](#add-ci-test-workflow)
     + [Add Docker Publish Workflow](#add-docker-publish-workflow)
     + [Pull published Docker image and launch from desktop](#pull-published-docker-image-and-launch-from-desktop)
@@ -858,11 +859,11 @@ after you are satisfied.
 
 ## Part 2: Dockers
 
-**GitHub Classroom Link: TBD
+**GitHub Classroom Link:** https://classroom.github.com/a/zwbPSVru
 
-In Part 2, we will use Docker to test and deploy the Rent-A-Cat website that
-we tested in Deliverable 3.  We will test the website using the Selenium
-JUnit tests that you wrote for the assignment.
+In Part 2, we will use Docker to test and deploy the Rent-A-Cat website that we
+tested in Deliverable 3.  We will test the website using the Playwright tests
+that you wrote for the assignment.
 
 Docker runs software in a self-contained virtualized environment called
 containers.  A container is launched from a Docker image, which is a binary
@@ -884,29 +885,19 @@ fail during deployment.
 
 ### Prerequisites
 
-1. You will need to download and install Docker Desktop for this exercise:
+1. Download and install Docker Desktop to be able to launch Docker containers:
    https://www.docker.com/products/docker-desktop/
 
-   You need the Docker Engine included in Docker Desktop to launch Docker containers.
-
-1. Please install the Chrome web browser: https://www.google.com/chrome/
-
-1. Please install/update the Chrome web driver.  Sorry, this exercise only works on Chrome not Firefox.
-   
-   ```
-   selenium\manager\windows\selenium-manager.exe --browser chrome
-   ```
-
-   If you use MacOS:
+1. install Playwright Test package as a dev dependency in the Node.js project:
 
    ```
-   selenium/manager/macos/selenium-manager --browser chrome
+   npm install -D @playwright/test
    ```
 
-   If you use Linux:
+1. Install chromium as the Playwright test browser
 
    ```
-   selenium/manager/linux/selenium-manager --browser chrome
+   npx playwright install --with-deps chromium
    ```
 
 ### Do some sanity tests
@@ -934,24 +925,21 @@ the web app on a browser using the URL:
 http://localhost:8080/
 ```
 
-You should see our Rent-A-Cat website.  Now leave the server running and open
-another terminal and then invoke Maven test after cd'ing into the selenium
-directory.
+You should see our Rent-A-Cat website.
+
+Now leave the server running and open another terminal to invoke Playwright test:
 
 ```
-cd selenium
-mvn test
+npx playwright test
 ```
 
-There is a single Selenium JUnit test in this project that tests that the
-web server can service HTTP reqeusts on port 8080:
+There is a single [Playwright test](tests/rentacat.spec.ts) in this project
+that tests that the web server can service HTTP reqeusts on port 8080:
 
 ```
-  @Test
-  public void testConnection() {
-    // Test that the webserver is ready to service an HTTP request
-    driver.get("http://localhost:8080/");
-  }
+test('TEST-CONNECTION', async ({ page }) => {
+  await page.goto(baseURL);
+});
 ```
 
 And of course, it should pass.
@@ -966,11 +954,8 @@ write this process into something called a Dockerfile and you are done.
 Create a Dockerfile at the root of your repository with the following content:
 
 ```
-# specify base image
-FROM adoptopenjdk/openjdk11:slim
-
-# install Maven on top of base image
-RUN apt-get update && apt-get install -y --no-install-recommends maven
+# Base image from https://hub.docker.com/layers/library/maven/3.9.14-eclipse-temurin-11-noble/
+FROM maven:3.9.14-eclipse-temurin-11-noble
 
 # define working directory
 WORKDIR /app
@@ -987,21 +972,32 @@ CMD ["/bin/sh", "-c", "mvn spring-boot:run"]
 ```
 
 The description of the base image adoptopenjdk/openjdk11:ubi can be found here:
+https://hub.docker.com/layers/library/maven/3.9.14-eclipse-temurin-11-noble/
 
-https://hub.docker.com/r/adoptopenjdk/openjdk11
+If you navigate to the above URL, you will see that a Docker image is
+constructed in layers, starting from the kernel layer.  Each command that
+copies files or installs software packages creates a new layer on top of the
+kernel layer.  This layered structure [allows one or more layers to be shared
+between multiple images, improving storage
+efficiency](https://docs.docker.com/get-started/docker-concepts/building-images/understanding-image-layers/).
+As such, our image builds several layers on top of the base image, so if there
+was another image using the same base image, the base image layers would be
+shared.
 
-Base images of all imaginable OS versions and with all widely used packages
-can be found at Docker Hub:
+For our image, we start with a base image image with the Ubuntu 24 LTS OS
+(that's what "noble" means) preinstalled with Maven and Temurin JDK 11.  On top
+of it we copy over files required to launch our web app to the work directory
+specified as /app.  We also expose TCP port 8080 to the outside world since
+that is the port that Spring Boot is going to be using.  If we don't explicitly
+expose ports, they will not be accessible in the Docker container created out
+of this image.  Lastly, we define the command that will be executed by default
+when the image is launched in a container, which is "mvn spring-boot:run".
 
-https://hub.docker.com/search
+Third party base images for popular Linux distributions and CPU architectures
+preinstalled with a variety of software packages can be found at [Docker
+Hub](https://hub.docker.com/search).
 
-For our image, we add the Maven build system and copy over files required to
-launch our web app.  We also expose TCP port 8080 to the outside world since
-that is the port that Spring Boot is going to be using.  If we don't
-explicitly expose ports, they will not be accessible in the Docker container
-created out of this image.  Lastly, we define the command that will be
-executed by default when the image is launched in a container, which is "mvn
-spring-boot:run".
+### Create Docker Container
 
 Now let's try creating a Docker container out of this image to test it.  By
 passing the "compose" argument to the docker tool, we can compose one or more
@@ -1072,29 +1068,18 @@ using the "Run" button, but when you do, make sure that you open the
 
 <img alt="Port mapping to 8080" src=img/docker_3.png>
 
-### Import Selenium JUnit Tests
+### Import Playwright Tests
 
 If you have stopped the container, fire up the container again because we
-are going to write some tests for it.  We want to add some actual Selenium
+are going to write some tests for it.  We want to add some actual Playwright
 tests that test the web app.  Well, we already wrote those tests for
-Deliverable 3, so let's just import D3Test.java from that project into
-selenium/src/test/java/edu/pitt/cs.
+Deliverable 3, so let's just import rentacat.spec.ts from that project into
+tests/rentacat.spec.ts.
 
 You need to do these three things though in D3Test.java:
 
-1. If you are using the Firefox driver (which likely you are), replace it with the Chrome driver.  That is, replace the following line:
-
-   ```
-   driver = new FirefoxDriver();
-   ```
-
-   with this line:
-
-   ```
-   driver = new ChromeDriver();
-   ```
-
-1. Replace the root URL of the web pages accessed with "http://localhost:8080".  Please make sure you use http:// and not https://.
+1. Replace the base URL of the web pages accessed with "http://localhost:8080".
+Please make sure you use http:// and not https://.
 
 1. Remove the tests that fail because they trigger defects on the web app
    (remember the tests whose names start with DEFECT?).
@@ -1102,18 +1087,17 @@ You need to do these three things though in D3Test.java:
 Make sure everything passes with:
 
 ```
-mvn test
+npx playwright test
 ```
+
+Detailed test results are under the playwright-report/ folder.
 
 ### Add CI Test Workflow
 
-You can imagine developers not wanting to run those Selenium tests on their
-desktops every time they do a commit.  Let's make a CI test workflow out
-of these tests so they don't have to.
-
-Add a new workflow file named docker-ci.yml to your GitHub repository with
-the following content (if you forgot how to do that already, review the
-[instructions for Maven CI](#add-maven-ci-workflow)):
+Now let's automate the test environment setup for the web app and the testing
+itself in a CI pipeline.  Add a new workflow file named docker-ci.yml to your
+GitHub repository with the following content (if you forgot how to do that
+already, review the [instructions for Maven CI](#add-maven-ci-workflow)):
 
 ```
 name: Docker CI
@@ -1139,92 +1123,87 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up JDK 11
-        uses: actions/setup-java@v3
-        with:
-          java-version: '11'
-          distribution: 'temurin'
-          cache: maven
+      - name: Set up Playwright
+        run: npm install -D @playwright/test
+      
+      - name: Set up Playwright Browsers
+        run: npx playwright install --with-deps chromium
 
       - name: Setup Docker buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Install Chrome Web Browser
-        run: sudo apt-get -y install google-chrome-stable
-
-      - name: Install Chrome Web Driver
-        run: selenium/manager/linux/selenium-manager --browser chrome
-
       - name: Launch Web Service
         run: docker compose up -d
 
-      - name: Run Selenium Tests
-        run: cd selenium && mvn test
+      - name: Run Playwright Tests
+        run: npx playwright test --project=chromium
+
+        # https://github.com/marketplace/actions/upload-a-build-artifact
+      - name: Upload Playwright results as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Playwright results
+          path: playwright-report/
+
 ```
 
 The steps are a replica of what we just did manually.
 
-Before we commit the workflow, there is just one more thing we need to do,
-and that is to make our Chrome browser headless when launched from the web
-driver on the GitHub Runners.  These Runners would not have a display
-attached to them so if we launch Chrome as-is, it will crash immediately
-saying there is no display.  So, we need to modify D3Test.java once more to
-create a headless Chrome in the @Before setUp():
+Commit and push all these changes and the Docker CI workflow will trigger
+immediately.  Now, the Playwright tests may pass but it may also fail.  If you
+run it a few times, you may notice that it sometimes passes and sometimes
+fails, and when it fails, it fails in different ways.  Here is an example of a
+failure (stress on example, since you will likely see a different failure):
 
 ```
-    ChromeOptions options = new ChromeOptions();
-    options.addArguments("--headless");
-    driver = new ChromeDriver(options);
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: page.goto: net::ERR_CONNECTION_RESET at http://localhost:8080/
+    Call log:
+      - navigating to "http://localhost:8080/", waiting until "load"
+
+
+      24 |
+      25 | test('TEST-3-LISTING', async ({ page }) => {
+    > 26 |   await page.goto(baseURL);
+         |              ^
+        at /home/runner/work/CS1632_CICD_Docker_Solution/CS1632_CICD_Docker_Solution/tests/rentacat.spec.ts:26:14
+
+    Error Context: test-results/rentacat-TEST-3-LISTING-chromium-retry1/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/rentacat-TEST-3-LISTING-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/rentacat-TEST-3-LISTING-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [chromium] › tests/rentacat.spec.ts:5:5 › TEST-1-RESET ─────────────────────────────────────────
+    [chromium] › tests/rentacat.spec.ts:19:5 › TEST-2-CATALOG ──────────────────────────────────────
+  1 flaky
+    [chromium] › tests/rentacat.spec.ts:25:5 › TEST-3-LISTING ──────────────────────────────────────
+  8 passed (22.9s)
+Error: Process completed with exit code 1.
 ```
 
-Please do the same for ConnectTest.java, or you can choose to remove that test
-entirely since it is subsumed by D3Test.  Commit and push all these changes and
-the Docker CI workflow will trigger immediately.  Now, most likely, all the
-workflow will be successful.  For good measure, let's try running the workflow
-a few more times manually by triggering it using the "Run workflow" button.
-You will notice that every so often the workflow will fail.  If you peek inside
-a failing run, you will see something like this at the end of mvn test:
-
-```
-Results :
-
-Tests in error: 
-  tEST10GREETACAT(edu.pitt.cs.D3Test): unknown error: net::ERR_CONNECTION_RESET(..)
-  tEST11GREETACATWITHNAME(edu.pitt.cs.D3Test): <unknown>: Failed to set the 'cookie' property on 'Document': Access is denied for this document.(..)
-  tEST1LINKS(edu.pitt.cs.D3Test): <unknown>: Failed to set the 'cookie' property on 'Document': Access is denied for this document.(..)
-  tEST2RESET(edu.pitt.cs.D3Test): <unknown>: Failed to set the 'cookie' property on 'Document': Access is denied for this document.(..)
-  tEST3CATALOG(edu.pitt.cs.D3Test): unknown error: net::ERR_CONNECTION_RESET(..)
-  tEST4LISTING(edu.pitt.cs.D3Test): unknown error: net::ERR_CONNECTION_RESET(..)
-  tEST5RENTACAT(edu.pitt.cs.D3Test): <unknown>: Failed to set the 'cookie' property on 'Document': Access is denied for this document.(..)
-  tEST6RENT(edu.pitt.cs.D3Test): <unknown>: Failed to set the 'cookie' property on 'Document': Access is denied for this document.(..)
-  tEST7RETURN(edu.pitt.cs.D3Test): <unknown>: Failed to set the 'cookie' property on 'Document': Access is denied for this document.(..)
-
-Tests run: 12, Failures: 0, Errors: 9, Skipped: 0
-
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD FAILURE
-[INFO] ------------------------------------------------------------------------
-```
-
-Note that some tests failed due to net::ERR_CONNECTION_RESET and some due to
-a failure in setting coockies.  And which tests suffer which errors may
-change every time the workflow is run.  What's happening?  There seems to be
-an issue with connecting or interacting with the web server, and it does not
-seem to be an issue with the web app itself.
+Some tests fail due to net::ERR_CONNECTION_RESET and some due to other reasons.
+What's happening?  The fact that the test results are nondeterministic tells
+you that it is due to either memory errors or race conditions (the two sources
+of nondeterminism by mistake we learned in class).  It is definitely not a
+memory error since neither Java (the language the web server is written in) and
+TypeScript (the language the Playwright tests are written in) allow memory
+errors to happen.  So it must be a **race condition**, and you would be right.
 
 Let's go back to our docker-ci.yml file.  The step "docker compose up -d"
 includes an option "-d" that we didn't use before.  The "-d" option is short
 for "detached" and allows docker compose to execute detached from the
 terminal so that the commandline can immediately return and continue
 executing the next steps (you can try it yourself on a terminal if you wish
-to).  That means that by the time you get to the Selenium tests, the
+to).  That means that by the time you get to the Playwright tests, the
 container may still be in the middle of launch.  Or, even if the container
-is up, the web server may not be ready yet.  Another **race condition**!
-This is exactly why the errors occurred nondeterministically, and the errors
-were more likely to occur starting from the second run because by then all
-the Maven packages would have been cached so that "mvn test" would not have
-to download them from Maven Central, making it run faster and more likely to
-overtake the web server.
+is up, the web server may not be ready yet.
 
 Again, to solve this issue, we have to put in some kind of synchronization
 to avoid the race condition.  The form of synchronization will necessarily
@@ -1252,7 +1231,7 @@ on the screen.  More important for our purposes, it returns an exit code of
 So the script will poll the URL every second until it can fetch the page.
 
 Save the above script to a file named "wait-for-webserver.sh".  And insert
-the invocation of that script right before running the Selenium tests.  I'll
+the invocation of that script right before running the Playwright tests.  I'll
 leave it to you to name the step however you want.
 
 After you push that change, try launching the workflow several times.  Now,
@@ -1263,9 +1242,16 @@ script waiting for the web server to start up:
 <img alt="Waiting for web server to start" src=img/wait_for_webserver_1.png>
 
 Only when the web server responds with a page does the script return and
-allow the workflow to continue on to Selenium testing:
+allow the workflow to continue on to Playwright testing:
 
 <img alt="Waiting for web server to start" src=img/wait_for_webserver_2.png>
+
+Just like for Part 1, the Docker CI workflow stores Playwright test results as
+an artifact visible at the bottom of the Summary page for a workflow run:
+
+<img alt="Docker artifact" src=img/docker_artifact.png>
+
+Try downloading it and opening the index.html file in a browser.
 
 ### Add Docker Publish Workflow
 

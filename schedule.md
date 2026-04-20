@@ -116,18 +116,27 @@ AFIST = [_A Friendly Introduction to Software Testing_](software-quality-assuran
 
 ## WEEK 14 (Week of 13 APR)
 
-* April 14, 11:00 AM @ 6110 Sennot Square: [Bank of New York (BNY)](https://www.bny.com/) lecture
-  * Speaker: Vittal Kommireddy, Director Of Quality Engineering Practice, [LinkedIn](https://www.linkedin.com/in/vittal-kommireddy-a1857621/)
-  
+* April 14, 11:00 AM @ MS Teams (Meeting link in Guest Lecture - BNY channel): [Bank of New York (BNY)](https://www.bny.com/) lecture
+  * Topic: Agentic AI integration throughout the SDLC
+  * Speaker: Vittal Kommireddy, Director - Software Engineering Practice, [LinkedIn](https://www.linkedin.com/in/vittal-kommireddy-a1857621/)
+  * Speaker: Prajita Nair, Sr Vice President, [LinkedIn](https://www.linkedin.com/in/prajita-nair-294b3b249/)
+  * Speaker: Kedar Phadke, Full Stack Solutions Architect, [LinkedIn](https://www.linkedin.com/in/kedarmphadke/)
+    
 * April 14, 4:00 PM @ 208 Cathedral of Learning: [Howmet Aerospace](https://www.howmet.com/) lecture
+  * Topic: Testing strategies and AI model testing and deployment
   * Speaker: Ashley Petrouski, IT Business Architect - Artificial Intelligence, [LinkedIn](https://www.linkedin.com/in/apetrouski23/)
-  * Speaker: Nancy O'Brokta
+  * Speaker: Nancy O'Brokta, Director, Oracle EBS and Reporting
 
-* April 16, 11:00 AM @ 6110 Sennot Square: [Naval Nuclear Lab](https://navalnuclearlab.energy.gov/nuclear-propulsion-program/) lecture
+* April 16, 11:00 AM @ MS Teams (Meeting link in Guest Lecture - NNL channel): [Naval Nuclear Lab](https://navalnuclearlab.energy.gov/nuclear-propulsion-program/) lecture
+  * Topic: DevSecOps: Development (Dev), Security (Sec), and Operations (Ops)
   * Speaker: Speaker: Bryan Herman, Enterprise AI Technical Advisor, [LinkedIn](https://www.linkedin.com/in/bryanherman/)
 
 * April 16, 4:00 PM @ 208 Cathedral of Learning: [CGI Consulting](https://www.cgi.com/) lecture
+  * Topic: Quality Engineering in MLOps (DevOps for Machine Learning)
   * Speaker: Laks Ranganathan, CGI Partner | Director - Consulting Services, [LinkedIn](https://www.linkedin.com/in/lakshmi-narasimhan-yeri-ranganathan-4b7b874b/)
+  * Speaker: Praveen Sone, Lead AI/ML Engineer | Solution Architect, [LinkedIn](https://www.linkedin.com/in/praveen-s-397bb811b/)
+  * Speaker: Venkata Siva Suman Kondapalli, Senior Consultant at CGI, [LinkedIn](https://www.linkedin.com/in/venkata-siva-suman-k-5a745136/)
+
 
 ## WEEK 15 (Week of 20 APR)
 
