@@ -152,8 +152,8 @@ AFIST = [_A Friendly Introduction to Software Testing_](software-quality-assuran
 
 * Midterm 2 on GradeScope
   * Dates:
-    * 1100 Section: 4/27 (Monday) 12:30PM - 1:50 PM
-    * 1130 Section: 5/1 (Friday) 4:00 PM - 5:20 PM
+    * 1100 Section: 4/27 (Monday) 12:30PM - 1:50 PM @ 6110 Sennott Square
+    * 1130 Section: 5/1 (Friday) 4:00 PM - 5:20 PM @ 208 Cathedral of Learning
   * Steps:
     1. Do TopHat attendance at start of class.  If no attendance, grade will not be counted.
     2. Click on assignment "Midterm 2" on GradeScope (will appear at start of class).
