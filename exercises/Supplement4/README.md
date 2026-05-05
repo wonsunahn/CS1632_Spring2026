@@ -1076,7 +1076,7 @@ tests that test the web app.  Well, we already wrote those tests for
 Deliverable 3, so let's just import rentacat.spec.ts from that project into
 tests/rentacat.spec.ts.
 
-You need to do these three things though in D3Test.java:
+You need to do these three things though in rentacat.spec.ts:
 
 1. Replace the base URL of the web pages accessed with "http://localhost:8080".
 Please make sure you use http:// and not https://.
